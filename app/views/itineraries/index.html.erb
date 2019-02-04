@@ -9,7 +9,12 @@
 
 </div>
 
-<div class="itin_index clearfix max-width-4">
+<div class="itin_index_js clearfix max-width-4">
+
+</div>
+
+
+<!-- <div class="itin_index clearfix max-width-4">
 
 <% @itineraries.each do |itin| unless @itineraries.empty? %>
   <div class="col col-4 "><%= link_to itin.name, itinerary_path(itin) %></div>
@@ -23,7 +28,24 @@
 
 <% end %>
 <% end %>
-</div>
+</div> -->
 
 
 </div>
+
+<script type="text/javascript" charset="utf-8">
+window.addEventListener("load",function() {
+  // attachListeners();
+
+  var posting = $.get('/list');
+  posting.done(function(list_data){
+    // debugger
+    var item = list_data[0];
+    // $('.itin_index_js').append(`<div class="col col-4 "><p id=itin`+item.id+`>`+item.name+`</p></div>`);
+    $('.itin_index_js').append(`<div class="col col-4 id=itin`+item.id+`">`+item.name+`</div>`+`<div class="col col-4 "> by `+item.user.username+`</div>`);
+    
+  });
+  // console.log("got it!");
+
+});
+</script>

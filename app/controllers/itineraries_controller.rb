@@ -3,15 +3,25 @@ before_action :find_and_set_itinerary!, only: [:show, :edit, :update, :destroy]
 before_action :logged_in?, only: [:new, :create, :show, :edit, :update, :destroy]
 before_action :current_user, only: [:new, :create, :show, :edit, :update, :destroy]
 
+def list
+  @list = Itinerary.all
+  render json: @list
+end
+
+
   def index
     if logged_in?
       # binding.pry
-      @itineraries = itin_ordered_list
+      # @itineraries = itin_ordered_list
+      @itineraries = Itinerary.all
       @current_user = current_user
+      # render json: @itineraries
     else
       redirect_to new_user_path
     end
   end
+
+
 
   def new
     if current_user.username == 'admin'
