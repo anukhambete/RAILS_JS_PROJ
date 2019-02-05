@@ -34,7 +34,13 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-
+$(function() {
+  $.get('/currentappuser', function(user_data){
+    var user_id = user_data.id;
+    current_user_id = user_id;
+  });
+  $('.itin_index h1').on('click', () => load_itin_list());
+});
 
 
 

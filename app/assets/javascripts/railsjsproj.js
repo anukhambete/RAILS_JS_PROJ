@@ -47,11 +47,20 @@ function attachListeners () {
 
 window.addEventListener("load",function() {
   // attachListeners();
-  $.get('/currentappuser', function(user_data){
-    var user_id = user_data.id;
-    current_user_id = user_id;
-  });
+  // $.get('/currentappuser', function(user_data){
+  //   var user_id = user_data.id;
+  //   current_user_id = user_id;
+  // });
+  //
+  // $('.itin_index h1').on('click', () => load_itin_list());
 
+
+  // console.log("got it!");
+});
+
+
+function load_itin_list(){
+  $('.itin_index_js').empty();
   var posting = $.get('/list');
   posting.done(function(list_data){
     //debugger
@@ -72,6 +81,4 @@ window.addEventListener("load",function() {
     // $('.itin_index_js').append(`<div class="col col-4 "><p id=itin`+item.id+`>`+item.name+`</p></div>`);
     attachListeners();
   });
-
-  // console.log("got it!");
-});
+}
