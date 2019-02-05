@@ -34,31 +34,8 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-window.addEventListener("load",function() {
-  // attachListeners();
-
-  var posting = $.get('/list');
-  posting.done(function(list_data){
-    //debugger
-    var array = list_data;
-    var i;
-    for (i=0; i<array.length; i++){
-      var item = array[i];
-      $('.itin_index_js').append(`<div class="col col-4 id=itin`+item.id+`">`+item.name+`</div>`+`<div class="col col-4 "> by `+item.user.username+`</div>`);
-      if (item.likes.length === 1) {
-        $('.itin_index_js').append(`<div class="col col-4 ">`+item.likes.length+` like</div>`);
-      } else if (item.likes.length > 1) {
-        $('.itin_index_js').append(`<div class="col col-4 ">`+item.likes.length+` likes</div>`);
-      } else {
-        $('.itin_index_js').append(`<div class="col col-4 "> No likes yet </div>`);
-      }
-    }
-    var item2 = list_data[0];
-    // $('.itin_index_js').append(`<div class="col col-4 "><p id=itin`+item.id+`>`+item.name+`</p></div>`);
 
 
-  });
-  // console.log("got it!");
 
-});
+
 </script>

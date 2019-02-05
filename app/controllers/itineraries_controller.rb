@@ -58,6 +58,7 @@ end
     else
       #@current_user = current_user
       @like = Like.find_by(user_id: @current_user.id, itinerary_id: @itinerary.id)
+      render json: @itinerary
     end
   end
 
