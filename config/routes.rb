@@ -20,6 +20,7 @@ Rails.application.routes.draw do
      resources :sessions
      resources :likes, only: [:create, :update, :destroy]
      get '/list', to: 'itineraries#list'
+     get '/currentappuser', to: 'users#current_app_user'
   # Example resource route with options:
   #   resources :products do
   #     member do

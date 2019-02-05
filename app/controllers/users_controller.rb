@@ -30,6 +30,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def current_app_user
+    @current_user = User.find(session[:user_id])
+    render json: @current_user
+  end
+
   private
 
   def user_params

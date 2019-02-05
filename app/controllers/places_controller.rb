@@ -91,11 +91,13 @@ before_action :check_if_admin!, only: [:edit, :destroy]
         if method == 1
           @place = Place.find(params[:place][:id])
           place_itin_association(params,@place)
-          redirect_to itinerary_path(@itinerary)
+          # redirect_to itinerary_path(@itinerary)
+          redirect_to itineraries_path
         elsif method == 2
           @place = Place.where(name: proper_case(params[:place][:name]), address: params[:place][:address]).first_or_create
           place_itin_association(params,@place)
-          redirect_to itinerary_path(@itinerary)
+          redirect_to itineraries_path
+          # redirect_to itinerary_path(@itinerary)
         else
           @itinerary = Itinerary.find(params[:itinerary_id])
           @place = Place.new
@@ -183,7 +185,8 @@ before_action :check_if_admin!, only: [:edit, :destroy]
         @place = Place.find(params[:id])
         @itinerary.places.delete(Place.find_by(id: params[:id]))
         @itinerary.save
-        redirect_to itinerary_path(@itinerary)
+        # redirect_to itinerary_path(@itinerary)
+        redirect_to itineraries_path
       else
         redirect_to itineraries_path
       end

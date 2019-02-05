@@ -39,7 +39,8 @@ end
       if @itinerary.save
         @itinerary.user = User.find(session[:user_id])
         @itinerary.save
-        redirect_to itinerary_path(@itinerary)
+        # redirect_to itinerary_path(@itinerary)
+        redirect_to itineraries_path
       else
         @current_user = User.find(session[:user_id])
         render :new
@@ -75,7 +76,7 @@ end
 
     @itinerary = Itinerary.find(params[:id])
     if current_user == @itinerary.user && @itinerary.update(itinerary_params)
-      redirect_to itinerary_path(@itinerary)
+      redirect_to itineraries_path
     else
       itin_update_fail(params)
       render :edit

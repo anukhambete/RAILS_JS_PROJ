@@ -1,10 +1,14 @@
-
+// <a rel="nofollow" data-method="delete" href="/itineraries/10">Delete Itinerary</a>
+// <a href="/itineraries/10/edit">Edit Itinerary</a>
+var current_user_id = 0;
 
 function attachListeners () {
 
   var itins = $('.itin_name');
   //debugger
   $('.itin_name').on('click', function(){
+
+
     var itin_id = parseInt(this.getAttribute("itin_id"));
     var posting = $.get('/itineraries/'+itin_id);
     posting.done(function(itin_data){
@@ -24,9 +28,18 @@ function attachListeners () {
       $('.itin_index_js').append(description_text);
       $('.itin_index_js').append(place_text);
 
-      var link = "<a href=" + "/places" + ">" + "View List of Places</a>"
-      debugger
-      $('.itin_index_js').append(link);
+      var add_place_link = "<a href=" + "/itineraries/" +itin_data.id+ "/places/new" + ">" + "Add new Places</a></br>"
+      var edit_itin_link = "<a href=" + "/itineraries/" +itin_data.id+ "/edit" + ">" + "Edit Itinerary</a></br>"
+      var delete_itin_link = "<a rel=" + "nofollow" + " data-method=" + "delete" + " href=" + "/itineraries/" +itin_data.id+ ">" + "Delete Itinerary</a>"
+
+
+      // var current_user_id = itin_data.user.id;
+      if (itin_data.user_id === current_user_id) {
+        $('.itin_index_js').append(add_place_link);
+        $('.itin_index_js').append(edit_itin_link);
+        $('.itin_index_js').append(delete_itin_link);
+      }
+
     });
 
   });
@@ -34,6 +47,10 @@ function attachListeners () {
 
 window.addEventListener("load",function() {
   // attachListeners();
+  $.get('/currentappuser', function(user_data){
+    var user_id = user_data.id;
+    current_user_id = user_id;
+  });
 
   var posting = $.get('/list');
   posting.done(function(list_data){
