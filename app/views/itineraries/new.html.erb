@@ -8,4 +8,35 @@
 <% end %>
 <h4><%= link_to "<< Return to Itineraries index", itineraries_path %></h4>
 </div>
+
+<div class="ItinResult">
+
 </div>
+</div>
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+      // debugger
+      var values = $(this).serialize();
+      //
+      var posting = $.post('/itineraries', values);
+      //
+      posting.done(function(data) {
+
+        // debugger
+        var itin = data;
+        var name_text = "<h3>" + itin["name"] + "<h3>";
+        var description_text = "<h3>" + itin["description"] + "<h3>";
+        $(".ItinResult").append(name_text);
+        $(".ItinResult").append(description_text);
+
+      });
+    });
+  });
+</script>

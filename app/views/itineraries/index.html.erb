@@ -1,7 +1,7 @@
 <div class="background-image-itin">
 
 <div class="itin_index clearfix max-width-4">
-<h1>List of Itineraries</h1>
+<h2>Click here to see a List of Itineraries</h2>
 <div class="col col-4 "><h3><%= link_to "View List of Places", places_path %></h3></div>
 <% if @current_user.username != 'admin'%>
   <div class="col col-4 "><h3><%= link_to "Create a new Itinerary", new_itinerary_path %></h3></div>
@@ -39,7 +39,8 @@ $(function() {
     var user_id = user_data.id;
     current_user_id = user_id;
   });
-  $('.itin_index h1').on('click', () => load_itin_list());
+  // load_itin_list()
+  $('.itin_index h2').on('click', () => load_itin_list());
 });
 
 

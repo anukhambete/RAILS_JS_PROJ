@@ -39,8 +39,9 @@ end
       if @itinerary.save
         @itinerary.user = User.find(session[:user_id])
         @itinerary.save
+        render json: @itinerary, status: 201
         # redirect_to itinerary_path(@itinerary)
-        redirect_to itineraries_path
+        #redirect_to itineraries_path
       else
         @current_user = User.find(session[:user_id])
         render :new
